@@ -5,15 +5,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Império Moda Feminina</title>
+    <title>Império Moda Feminina | Moda praia e looks femininos</title>
 
     <meta name="description"
-        content="Império Moda Feminina - Moda praia e moda feminina.">
+        content="Confira novidades em moda feminina, biquínis, moda praia e peças selecionadas na Império Moda Feminina.">
+
+    <link rel="canonical" href="https://imperiomodasfemininas.vercel.app/">
+    <meta property="og:title" content="Império Moda Feminina | Moda praia e looks femininos">
+    <meta property="og:description" content="Moda praia e peças femininas selecionadas para você encontrar seu próximo look favorito.">
+    <meta property="og:image" content="https://imperiomodasfemininas.vercel.app/imagens/saida%20de%20praia%20-%20shorthinho%20de%20renda.jpeg">
+    <meta property="og:url" content="https://imperiomodasfemininas.vercel.app/">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" href="imagens/logo imperio.jpg">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ClothingStore",
+        "name": "Império Moda Feminina",
+        "url": "https://imperiomodasfemininas.vercel.app/",
+        "image": "https://imperiomodasfemininas.vercel.app/imagens/logo%20imperio.jpg",
+        "telephone": "+55 11 97592-8045",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Rua Largo da Concórdia, 131",
+            "addressLocality": "São Paulo",
+            "addressRegion": "SP",
+            "addressCountry": "BR"
+        },
+        "sameAs": ["https://www.instagram.com/imperiomodafeminina.bras/"]
+    }
+    </script>
 
     <meta name="theme-color" content="#193b46">
 
     <link rel="preload" as="image" href="imagens/saida de praia - shorthinho de renda.jpeg">
     <link rel="preload" as="image" href="imagens/logo imperio.jpg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
 </head>
@@ -39,7 +71,15 @@
             <a href="#contato">Contato</a>
         </nav>
 
+        <button class="menu-toggle" onclick="alternarMenu()" aria-label="Abrir menu" aria-expanded="false">
+            Menu
+        </button>
+
         <div class="header-actions">
+            <a class="header-whatsapp" href="https://wa.me/5511975928045" target="_blank" rel="noopener noreferrer" aria-label="Falar pelo WhatsApp">
+                WhatsApp
+            </a>
+
             <button class="theme-toggle" onclick="alternarTema()" aria-label="Alternar tema" title="Alternar tema">
                 <span id="themeIcon">Tema</span>
             </button>
@@ -47,10 +87,21 @@
             <button class="search-button" onclick="focarBusca()" aria-label="Buscar produtos" title="Buscar produtos">
                 Buscar
             </button>
+
+            <button class="header-cart-button" onclick="abrirCarrinho()" aria-label="Abrir carrinho">
+                Sacola <span id="headerCartCount">0</span>
+            </button>
         </div>
 
     </div>
 </header>
+
+<nav class="mobile-nav" id="mobileNav" aria-label="Navegação mobile">
+    <a href="#inicio" onclick="fecharMenu()">Início</a>
+    <a href="#produtos" onclick="fecharMenu()">Produtos</a>
+    <a href="#categorias" onclick="fecharMenu()">Categorias</a>
+    <a href="#contato" onclick="fecharMenu()">Contato</a>
+</nav>
 
 
 <section class="hero" id="inicio">
@@ -64,17 +115,20 @@
             </span>
 
             <h1>
-                Seu verão
-                <span>começa aqui.</span>
+                Moda feminina para você
+                <span>se sentir ainda mais incrível.</span>
             </h1>
 
             <p>
-                Moda praia e peças femininas para você
-                aproveitar os dias de sol com estilo.
+                Encontre looks, moda praia e peças que combinam com o seu estilo.
             </p>
 
             <a href="#produtos" class="main-button">
                 Ver produtos
+            </a>
+
+            <a href="https://wa.me/5511975928045" target="_blank" rel="noopener noreferrer" class="secondary-button">
+                Falar no WhatsApp
             </a>
 
         </div>
@@ -83,6 +137,15 @@
 
     </div>
 
+</section>
+
+<section class="highlight-strip" aria-label="Destaques da loja">
+    <div class="container highlight-grid">
+        <span><b>Novidades</b> toda semana</span>
+        <span><b>Atendimento</b> pelo WhatsApp</span>
+        <span><b>Produtos</b> selecionados</span>
+        <span><b>Loja</b> no Brás</span>
+    </div>
 </section>
 
 
@@ -136,6 +199,14 @@
                 Moda Feminina
             </button>
 
+            <button class="category-btn" onclick="filtrarCategoria('novidades', this)">
+                Novidades
+            </button>
+
+            <button class="category-btn" onclick="filtrarCategoria('destaques', this)">
+                Destaques
+            </button>
+
         </div>
 
     </div>
@@ -151,9 +222,7 @@
 
             <div>
 
-                <span class="eyebrow">
-                    NOSSA COLEÇÃO
-                </span>
+                <span class="eyebrow" id="resultadoResumo">NOSSA COLEÇÃO</span>
 
                 <h2>
                     Peças em destaque
@@ -173,6 +242,12 @@
 
         </div>
 
+        <div class="empty-results" id="emptyResults" hidden>
+            <h3>Não encontramos esse produto ainda.</h3>
+            <p>Fale com a gente pelo WhatsApp e podemos verificar outras opções.</p>
+            <a href="https://wa.me/5511975928045" target="_blank" rel="noopener noreferrer" class="secondary-button">Falar no WhatsApp</a>
+        </div>
+
 
         <div
             class="products-grid"
@@ -181,6 +256,46 @@
 
     </div>
 
+</section>
+
+<section class="editorial-section content-section" id="novidades">
+    <div class="container">
+        <div class="section-heading-row">
+            <div>
+                <span class="eyebrow">SELEÇÃO DA SEMANA</span>
+                <h2>Novidades</h2>
+                <p>Peças novas para atualizar seus dias de sol.</p>
+            </div>
+            <button class="text-button" onclick="filtrarCategoria('novidades', document.querySelector('[onclick*=\'novidades\']'))">Ver todas as peças</button>
+        </div>
+        <div class="mini-products" id="novidadesGrid"></div>
+    </div>
+</section>
+
+<section class="editorial-section choices-section content-section">
+    <div class="container">
+        <div class="section-title">
+            <span>CURADORIA IMPÉRIO</span>
+            <h2>Escolhas da Império</h2>
+            <p>Peças selecionadas para você encontrar seu próximo look favorito.</p>
+        </div>
+        <div class="mini-products" id="choicesGrid"></div>
+    </div>
+</section>
+
+<section class="universe-section content-section">
+    <div class="container">
+        <div class="section-title">
+            <span>INSPIRAÇÃO</span>
+            <h2>Universo Império</h2>
+            <p>Ideias para vestir seus dias com mais personalidade.</p>
+        </div>
+        <div class="universe-grid">
+            <article><span>Beleza</span><h3>3 ideias de looks para aproveitar o verão</h3><p>Combinações leves para sair da praia direto para o passeio.</p></article>
+            <article><span>Moda</span><h3>Como escolher o biquíni ideal para seu estilo</h3><p>Detalhes que ajudam você a se sentir confortável e segura.</p></article>
+            <article><span>Tendências</span><h3>O que está aparecendo nas vitrines</h3><p>Cores, texturas e modelagens para inspirar sua próxima escolha.</p></article>
+        </div>
+    </div>
 </section>
 
 
@@ -233,13 +348,10 @@
             ACOMPANHE A IMPÉRIO
         </span>
 
-        <h2>
-            Novidades todos os dias
-        </h2>
+        <h2>Siga a Império no Instagram</h2>
 
         <p>
-            Acompanhe nossos produtos e novidades
-            pelo Instagram.
+            Veja novidades, lançamentos e inspirações todos os dias.
         </p>
 
         <a
@@ -247,12 +359,23 @@
             target="_blank"
             class="instagram-button">
 
-            Instagram
+            @imperiomodafeminina.bras
 
         </a>
 
     </div>
 
+</section>
+
+<section class="location-section content-section" id="localizacao">
+    <div class="container location-content">
+        <div>
+            <span class="eyebrow">VENHA NOS VISITAR</span>
+            <h2>Encontre a Império</h2>
+            <p>Rua Largo da Concórdia, 131<br>Brás — São Paulo/SP</p>
+        </div>
+        <a class="main-button" target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/search/?api=1&query=Rua+Largo+da+Concordia+131+Bras+Sao+Paulo">Como chegar</a>
+    </div>
 </section>
 
 
@@ -266,10 +389,7 @@
                 Império Moda Feminina
             </h3>
 
-            <p>
-                Moda praia e feminina para deixar
-                seus dias ainda mais especiais.
-            </p>
+            <p>Moda feminina, estilo e novidades para você.</p>
 
         </div>
 
@@ -280,13 +400,9 @@
                 Onde estamos
             </h3>
 
-            <p>
-                Rua Largo da Concórdia, 131
-            </p>
-
-            <p>
-                Brás — São Paulo/SP
-            </p>
+            <p>Rua Largo da Concórdia, 131</p>
+            <p>Brás — São Paulo/SP</p>
+            <p><a href="https://www.google.com/maps/search/?api=1&query=Rua+Largo+da+Concordia+131+Bras+Sao+Paulo" target="_blank" rel="noopener noreferrer">Como chegar</a></p>
 
         </div>
 
@@ -298,11 +414,11 @@
             </h3>
 
             <p>
-                WhatsApp
+                <a href="https://wa.me/5511975928045" target="_blank" rel="noopener noreferrer">WhatsApp</a>
             </p>
 
             <p>
-                Instagram
+                <a href="https://www.instagram.com/imperiomodafeminina.bras/" target="_blank" rel="noopener noreferrer">Instagram</a>
             </p>
 
         </div>
@@ -312,7 +428,7 @@
 
     <div class="copyright">
 
-        © 2026 Império Moda Feminina
+        © 2026 Império Moda Feminina. Todos os direitos reservados.
 
     </div>
 
@@ -331,6 +447,10 @@
     </span>
 
 </button>
+
+<a class="whatsapp-contact" href="https://wa.me/5511975928045" target="_blank" rel="noopener noreferrer" aria-label="Fale conosco pelo WhatsApp">
+    Fale conosco
+</a>
 
 
 <aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
@@ -365,6 +485,8 @@
 
 <div class="cart-overlay" id="cartOverlay" onclick="fecharCarrinho()"></div>
 
+<button class="back-to-top" id="backToTop" onclick="voltarAoTopo()" aria-label="Voltar ao topo">Topo</button>
+
 
 <div class="gallery-modal" id="galleryModal" aria-hidden="true">
 
@@ -382,6 +504,26 @@
 
     </div>
 
+</div>
+
+<div class="product-modal" id="productModal" aria-hidden="true">
+    <div class="product-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="productModalTitle">
+        <button class="gallery-close" onclick="fecharDetalhes()" aria-label="Fechar detalhes">Fechar</button>
+        <div class="product-modal-layout">
+            <img id="productModalImage" src="" alt="">
+            <div class="product-modal-copy">
+                <span class="product-category" id="productModalCategory"></span>
+                <h2 id="productModalTitle"></h2>
+                <p id="productModalDescription"></p>
+                <ul class="product-details" id="productModalDetails"></ul>
+                <strong class="modal-price" id="productModalPrice"></strong>
+                <div class="modal-actions">
+                    <button class="buy-button" id="productModalCart">Adicionar à sacola</button>
+                    <button class="secondary-button" id="productModalWhatsApp">Comprar pelo WhatsApp</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 

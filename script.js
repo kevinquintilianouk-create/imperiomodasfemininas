@@ -220,6 +220,15 @@ const produtos = [
 
 
 let carrinho = [];
+let categoriaAtual = "todos";
+let termoAtual = "";
+let produtoDetalheAtual = null;
+
+produtos.forEach((produto, index) => {
+    produto.destaque = index < 4;
+    produto.tags = [produto.categoriaNome, produto.categoria, produto.novo ? "novidades" : ""].filter(Boolean);
+    produto.imagemAlt = produto.imagemAlt || `${produto.nome} - Império Moda Feminina`;
+});
 
 
 /* ==========================================
@@ -236,23 +245,13 @@ function mostrarProdutos(lista = produtos) {
 
     container.innerHTML = "";
 
+    const emptyResults = document.getElementById("emptyResults");
+    if (emptyResults) {
+        emptyResults.hidden = lista.length > 0;
+    }
+
 
     if (lista.length === 0) {
-
-        container.innerHTML = `
-
-            <div style="
-                grid-column:1/-1;
-                text-align:center;
-                padding:60px;
-                color:#777;
-            ">
-
-                Nenhum produto encontrado.
-
-            </div>
-
-        `;
 
         return;
 
@@ -278,13 +277,27 @@ function mostrarProdutos(lista = produtos) {
 
         const imagemDisponivel = produto.disponivel !== false;
 
+        card.setAttribute("tabindex", "0");
+        card.setAttribute("aria-label", `Ver detalhes de ${produto.nome}`);
+        card.addEventListener("click", (event) => {
+            if (!event.target.closest("button, a, img")) {
+                abrirDetalhes(index);
+            }
+        });
+        card.addEventListener("keydown", (event) => {
+            if ((event.key === "Enter" || event.key === " ") && event.target === card) {
+                event.preventDefault();
+                abrirDetalhes(index);
+            }
+        });
+
         card.innerHTML = `
 
             <div class="product-image">
 
                 ${imagemDisponivel ? `<img
                     src="${produto.imagem}"
-                    alt="${produto.nome}"
+                    alt="${produto.imagemAlt}"
                     loading="${index < 2 ? "eager" : "lazy"}"
                     decoding="async"
                     onclick="abrirGaleria(${index}, 0)"
@@ -334,6 +347,10 @@ function mostrarProdutos(lista = produtos) {
                     ${produto.nome}
 
                 </h3>
+
+                <button class="details-button" onclick="abrirDetalhes(${index})">
+                    Ver detalhes
+                </button>
 
 
                 <p class="product-description">
@@ -392,6 +409,10 @@ function comprar(index) {
     const produto =
         produtos[index];
 
+    if (!produto || produto.disponivel === false) {
+        return;
+    }
+
 
     carrinho.push(produto);
 
@@ -413,6 +434,13 @@ function atualizarCarrinho() {
         "cartCount"
     ).textContent =
         carrinho.length;
+
+    const headerCount = document.getElementById("headerCartCount");
+    if (headerCount) {
+        headerCount.textContent = carrinho.length;
+    }
+
+    localStorage.setItem("carrinho", JSON.stringify(carrinho.map(produto => produtos.indexOf(produto))));
 
     const cartItems = document.getElementById("cartItems");
     const cartTotal = document.getElementById("cartTotal");
@@ -443,7 +471,7 @@ function atualizarCarrinho() {
 
         return `
             <article class="cart-item">
-                <img src="${produto.imagem}" alt="${produto.nome}">
+                <img src="${produto.imagem}" alt="${produto.imagemAlt || produto.nome}">
                 <div class="cart-item-info">
                     <h3>${produto.nome}</h3>
                     <span>R$ ${produto.preco.toFixed(2).replace(".", ",")}</span>
@@ -503,6 +531,20 @@ function abrirCarrinho() {
 }
 
 
+function carregarCarrinho() {
+
+    try {
+        const salvos = JSON.parse(localStorage.getItem("carrinho") || "[]");
+        carrinho = salvos
+            .map(index => produtos[index])
+            .filter(Boolean);
+    } catch (error) {
+        carrinho = [];
+    }
+
+}
+
+
 function fecharCarrinho() {
 
     document.getElementById("cartDrawer").classList.remove("open");
@@ -537,6 +579,57 @@ function finalizarPedido() {
         `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(mensagem)}`,
         "_blank"
     );
+
+}
+
+
+function comprarPeloWhatsApp(index) {
+
+    const produto = produtos[index];
+    const mensagem = `Olá! Vi o produto ${produto.nome} no site da Império Moda Feminina e gostaria de saber mais sobre disponibilidade, tamanhos e cores.`;
+
+    window.open(
+        `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(mensagem)}`,
+        "_blank"
+    );
+
+}
+
+
+/* ==========================================
+   DETALHES DO PRODUTO
+========================================== */
+
+function abrirDetalhes(index) {
+
+    const produto = produtos[index];
+    produtoDetalheAtual = index;
+    document.getElementById("productModalImage").src = produto.imagem;
+    document.getElementById("productModalImage").alt = produto.imagemAlt || produto.nome;
+    document.getElementById("productModalCategory").textContent = produto.categoriaNome;
+    document.getElementById("productModalTitle").textContent = produto.nome;
+    document.getElementById("productModalDescription").textContent = produto.descricao || "Consulte os detalhes com nosso atendimento.";
+    document.getElementById("productModalPrice").textContent = `R$ ${(produto.preco || 0).toFixed(2).replace(".", ",")}`;
+    document.getElementById("productModalDetails").innerHTML = (produto.detalhes || []).map(item => `<li>${item}</li>`).join("");
+    const botaoSacola = document.getElementById("productModalCart");
+    botaoSacola.disabled = produto.disponivel === false;
+    botaoSacola.textContent = produto.disponivel === false ? "Em breve" : "Adicionar à sacola";
+    botaoSacola.onclick = () => {
+        comprar(index);
+        fecharDetalhes();
+    };
+    document.getElementById("productModalWhatsApp").onclick = () => comprarPeloWhatsApp(index);
+    document.getElementById("productModal").classList.add("open");
+    document.getElementById("productModal").setAttribute("aria-hidden", "false");
+
+}
+
+
+function fecharDetalhes() {
+
+    document.getElementById("productModal").classList.remove("open");
+    document.getElementById("productModal").setAttribute("aria-hidden", "true");
+    produtoDetalheAtual = null;
 
 }
 
@@ -620,35 +713,43 @@ function filtrarCategoria(
         );
 
 
-    botao.classList.add(
-        "active"
-    );
-
-
-    if (
-        categoria === "todos"
-    ) {
-
-        mostrarProdutos(
-            produtos
-        );
-
-        return;
-
+    if (botao) {
+        botao.classList.add("active");
     }
 
+    categoriaAtual = categoria;
+    aplicarFiltros();
 
-    const filtrados =
-        produtos.filter(
-            produto =>
-                produto.categoria ===
-                categoria
-        );
+}
 
 
-    mostrarProdutos(
-        filtrados
-    );
+function aplicarFiltros() {
+
+    const termo = termoAtual;
+    const resultado = produtos.filter((produto) => {
+        const correspondeCategoria = categoriaAtual === "todos"
+            || (categoriaAtual === "novidades" && produto.novo)
+            || (categoriaAtual === "destaques" && produto.destaque)
+            || produto.categoria === categoriaAtual;
+
+        const texto = [
+            produto.nome,
+            produto.categoria,
+            produto.categoriaNome,
+            produto.descricao,
+            ...(produto.tags || []),
+            ...(produto.detalhes || [])
+        ].join(" ").toLowerCase();
+
+        return correspondeCategoria && texto.includes(termo);
+    });
+
+    const resumo = document.getElementById("resultadoResumo");
+    if (resumo) {
+        resumo.textContent = `${resultado.length} ${resultado.length === 1 ? "PEÇA ENCONTRADA" : "PEÇAS ENCONTRADAS"}`;
+    }
+
+    mostrarProdutos(resultado);
 
 }
 
@@ -659,42 +760,34 @@ function filtrarCategoria(
 
 function buscarProduto() {
 
-    const termo =
-        document
-            .getElementById(
-                "busca"
-            )
-            .value
-            .toLowerCase()
-            .trim();
+    termoAtual = document.getElementById("busca").value.toLowerCase().trim();
+    aplicarFiltros();
+
+}
 
 
-    const resultado =
-        produtos.filter(
-            produto =>
+function renderizarColecoes() {
 
-                produto.nome
-                    .toLowerCase()
-                    .includes(termo)
+    const disponiveis = produtos.filter(produto => produto.disponivel !== false);
+    const novidades = disponiveis.filter(produto => produto.novo);
+    const escolhas = disponiveis.filter(produto => produto.destaque).slice(0, 4);
 
-                ||
-
-                produto.descricao
-                    .toLowerCase()
-                    .includes(termo)
-
-                ||
-
-                produto.categoriaNome
-                    .toLowerCase()
-                    .includes(termo)
-
-        );
-
-
-    mostrarProdutos(
-        resultado
-    );
+    [
+        ["novidadesGrid", novidades],
+        ["choicesGrid", escolhas]
+    ].forEach(([id, lista]) => {
+        const container = document.getElementById(id);
+        if (!container) return;
+        container.innerHTML = lista.map((produto) => {
+            const index = produtos.indexOf(produto);
+            return `
+                <article class="mini-product">
+                    <img src="${produto.imagem}" alt="${produto.imagemAlt}" loading="lazy" decoding="async">
+                    <div><span>${produto.categoriaNome}</span><h3>${produto.nome}</h3><strong>R$ ${produto.preco.toFixed(2).replace(".", ",")}</strong><button onclick="abrirDetalhes(${index})">Ver peça</button></div>
+                </article>
+            `;
+        }).join("");
+    });
 
 }
 
@@ -725,6 +818,43 @@ function focarBusca() {
 }
 
 
+function alternarMenu() {
+
+    const menu = document.getElementById("mobileNav");
+    const botao = document.querySelector(".menu-toggle");
+    const aberto = menu.classList.toggle("open");
+    botao.setAttribute("aria-expanded", String(aberto));
+
+}
+
+
+function fecharMenu() {
+
+    const menu = document.getElementById("mobileNav");
+    const botao = document.querySelector(".menu-toggle");
+    menu.classList.remove("open");
+    botao.setAttribute("aria-expanded", "false");
+
+}
+
+
+function voltarAoTopo() {
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+
+}
+
+
+function atualizarBotaoTopo() {
+
+    const botao = document.getElementById("backToTop");
+    if (botao) {
+        botao.classList.toggle("visible", window.scrollY > 500);
+    }
+
+}
+
+
 /* ==========================================
    TEMA
 ========================================== */
@@ -747,10 +877,32 @@ function carregarTema() {
 }
 
 
+document.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape") return;
+    fecharCarrinho();
+    fecharGaleria();
+    fecharDetalhes();
+    fecharMenu();
+});
+
+document.getElementById("galleryModal").addEventListener("click", (event) => {
+    if (event.target.id === "galleryModal") fecharGaleria();
+});
+
+document.getElementById("productModal").addEventListener("click", (event) => {
+    if (event.target.id === "productModal") fecharDetalhes();
+});
+
+window.addEventListener("scroll", atualizarBotaoTopo, { passive: true });
+
+
 /* ==========================================
    INICIAR
 ========================================== */
 
-mostrarProdutos();
 carregarTema();
+carregarCarrinho();
+mostrarProdutos();
+renderizarColecoes();
 atualizarCarrinho();
+atualizarBotaoTopo();
