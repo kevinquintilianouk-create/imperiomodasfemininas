@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Império Moda Feminina</title>
+
+    <meta name="description"
+        content="Império Moda Feminina - Moda praia e moda feminina.">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="header">
+    <div class="container header-content">
+
+        <a href="#" class="logo">
+            <img class="logo-image" src="imagens/logo imperio.jpg" alt="Logo Império Moda Praia">
+
+            <div>
+                <strong>Império Moda Feminina</strong>
+                <span>Moda Praia & Feminina</span>
+            </div>
+        </a>
+
+        <nav>
+            <a href="#inicio">Início</a>
+            <a href="#produtos">Produtos</a>
+            <a href="#categorias">Categorias</a>
+            <a href="#contato">Contato</a>
+        </nav>
+
+        <div class="header-actions">
+            <button class="theme-toggle" onclick="alternarTema()" aria-label="Alternar tema" title="Alternar tema">
+                <span id="themeIcon">Tema</span>
+            </button>
+
+            <button class="search-button" onclick="focarBusca()" aria-label="Buscar produtos" title="Buscar produtos">
+                Buscar
+            </button>
+        </div>
+
+    </div>
+</header>
+
+
+<section class="hero" id="inicio">
+
+    <div class="container hero-content">
+
+        <div class="hero-text">
+
+            <span class="eyebrow">
+                IMPÉRIO MODA FEMININA
+            </span>
+
+            <h1>
+                Seu verão
+                <span>começa aqui.</span>
+            </h1>
+
+            <p>
+                Moda praia e peças femininas para você
+                aproveitar os dias de sol com estilo.
+            </p>
+
+            <a href="#produtos" class="main-button">
+                Ver produtos
+            </a>
+
+        </div>
+
+        <div class="hero-photo"></div>
+
+    </div>
+
+</section>
+
+
+<section class="categories" id="categorias">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <span>ENCONTRE SEU ESTILO</span>
+
+            <h2>
+                Escolha uma categoria
+            </h2>
+
+            <p>
+                Encontre sua peça favorita de forma rápida.
+            </p>
+
+        </div>
+
+        <div class="category-buttons">
+
+            <button
+                class="category-btn active"
+                onclick="filtrarCategoria('todos', this)">
+                Todos
+            </button>
+
+            <button
+                class="category-btn"
+                onclick="filtrarCategoria('saida', this)">
+                Saídas de Praia
+            </button>
+
+            <button
+                class="category-btn"
+                onclick="filtrarCategoria('biquini', this)">
+                Biquínis
+            </button>
+
+            <button
+                class="category-btn"
+                onclick="filtrarCategoria('maio', this)">
+                Maiôs
+            </button>
+
+            <button
+                class="category-btn"
+                onclick="filtrarCategoria('feminino', this)">
+                Moda Feminina
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="products-section" id="produtos">
+
+    <div class="container">
+
+        <div class="products-top">
+
+            <div>
+
+                <span class="eyebrow">
+                    NOSSA COLEÇÃO
+                </span>
+
+                <h2>
+                    Peças em destaque
+                </h2>
+
+            </div>
+
+            <div class="search-box">
+
+                <input
+                    type="text"
+                    id="busca"
+                    placeholder="Buscar produto..."
+                    oninput="buscarProduto()">
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="products-grid"
+            id="listaProdutos">
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="benefits">
+
+    <div class="container benefits-grid">
+
+        <div class="benefit">
+            <h3>
+                Peças selecionadas
+            </h3>
+
+            <p>
+                Produtos escolhidos para você.
+            </p>
+        </div>
+
+
+        <div class="benefit">
+            <h3>
+                Atendimento fácil
+            </h3>
+
+            <p>
+                Tire suas dúvidas pelo WhatsApp.
+            </p>
+        </div>
+
+
+        <div class="benefit">
+            <h3>
+                Compra simples
+            </h3>
+
+            <p>
+                Escolha sua peça e fale conosco.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="instagram">
+
+    <div class="container">
+
+        <span class="eyebrow">
+            ACOMPANHE A IMPÉRIO
+        </span>
+
+        <h2>
+            Novidades todos os dias
+        </h2>
+
+        <p>
+            Acompanhe nossos produtos e novidades
+            pelo Instagram.
+        </p>
+
+        <a
+            href="https://www.instagram.com/imperiomodafeminina.bras/"
+            target="_blank"
+            class="instagram-button">
+
+            Instagram
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<footer id="contato">
+
+    <div class="container footer-grid">
+
+        <div>
+
+            <h3>
+                Império Moda Feminina
+            </h3>
+
+            <p>
+                Moda praia e feminina para deixar
+                seus dias ainda mais especiais.
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <h3>
+                Onde estamos
+            </h3>
+
+            <p>
+                Rua Largo da Concórdia, 131
+            </p>
+
+            <p>
+                Brás — São Paulo/SP
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <h3>
+                Fale conosco
+            </h3>
+
+            <p>
+                WhatsApp
+            </p>
+
+            <p>
+                Instagram
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="copyright">
+
+        © 2026 Império Moda Feminina
+
+    </div>
+
+</footer>
+
+
+<button
+    class="whatsapp-float"
+    onclick="abrirCarrinho()">
+
+    WhatsApp
+
+    <span id="cartCount">
+        0
+    </span>
+
+</button>
+
+
+<aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
+
+    <div class="cart-header">
+        <div>
+            <span class="eyebrow">SEU PEDIDO</span>
+            <h2>Minha sacola</h2>
+        </div>
+
+        <button class="cart-close" onclick="fecharCarrinho()" aria-label="Fechar carrinho">×</button>
+    </div>
+
+    <div class="cart-items" id="cartItems"></div>
+
+    <div class="cart-footer">
+        <div class="cart-total">
+            <span>Total</span>
+            <strong id="cartTotal">R$ 0,00</strong>
+        </div>
+
+        <button class="checkout-button" onclick="finalizarPedido()">
+            Finalizar pelo WhatsApp
+        </button>
+    </div>
+
+</aside>
+
+<div class="cart-overlay" id="cartOverlay" onclick="fecharCarrinho()"></div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
