@@ -10,6 +10,11 @@
     <meta name="description"
         content="Império Moda Feminina - Moda praia e moda feminina.">
 
+    <meta name="theme-color" content="#193b46">
+
+    <link rel="preload" as="image" href="imagens/saida de praia - shorthinho de renda.jpeg">
+    <link rel="preload" as="image" href="imagens/logo imperio.jpg">
+
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -81,7 +86,7 @@
 </section>
 
 
-<section class="categories" id="categorias">
+<section class="categories content-section" id="categorias">
 
     <div class="container">
 
@@ -138,7 +143,7 @@
 </section>
 
 
-<section class="products-section" id="produtos">
+<section class="products-section content-section" id="produtos">
 
     <div class="container">
 
@@ -179,7 +184,7 @@
 </section>
 
 
-<section class="benefits">
+<section class="benefits content-section">
 
     <div class="container benefits-grid">
 
@@ -220,7 +225,7 @@
 </section>
 
 
-<section class="instagram">
+<section class="instagram content-section">
 
     <div class="container">
 
@@ -316,9 +321,10 @@
 
 <button
     class="whatsapp-float"
-    onclick="abrirCarrinho()">
+    onclick="abrirCarrinho()"
+    aria-label="Abrir carrinho">
 
-    WhatsApp
+    Carrinho
 
     <span id="cartCount">
         0
@@ -332,7 +338,7 @@
     <div class="cart-header">
         <div>
             <span class="eyebrow">SEU PEDIDO</span>
-            <h2>Minha sacola</h2>
+            <h2>Pedido de reserva</h2>
         </div>
 
         <button class="cart-close" onclick="fecharCarrinho()" aria-label="Fechar carrinho">×</button>
@@ -341,19 +347,42 @@
     <div class="cart-items" id="cartItems"></div>
 
     <div class="cart-footer">
+        <p class="cart-note">
+            Envie seu pedido para confirmar disponibilidade, reserva e valor do frete com nosso atendimento.
+        </p>
+
         <div class="cart-total">
             <span>Total</span>
             <strong id="cartTotal">R$ 0,00</strong>
         </div>
 
         <button class="checkout-button" onclick="finalizarPedido()">
-            Finalizar pelo WhatsApp
+            Enviar pedido ao atendimento
         </button>
     </div>
 
 </aside>
 
 <div class="cart-overlay" id="cartOverlay" onclick="fecharCarrinho()"></div>
+
+
+<div class="gallery-modal" id="galleryModal" aria-hidden="true">
+
+    <div class="gallery-dialog" role="dialog" aria-modal="true" aria-label="Galeria de imagens do produto">
+
+        <button class="gallery-close" onclick="fecharGaleria()" aria-label="Fechar galeria">Fechar</button>
+
+        <img class="gallery-main-image" id="galleryMainImage" src="" alt="">
+
+        <div class="gallery-controls">
+            <button onclick="imagemAnterior()" aria-label="Imagem anterior">Anterior</button>
+            <span id="galleryCounter">1 / 1</span>
+            <button onclick="proximaImagem()" aria-label="Próxima imagem">Próxima</button>
+        </div>
+
+    </div>
+
+</div>
 
 
 <script src="script.js"></script>

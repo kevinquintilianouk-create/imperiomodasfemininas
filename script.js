@@ -39,21 +39,97 @@ const produtos = [
 
 
     {
-        nome: "Saída de Praia Elegance",
+        nome: "01 Biquíni Suplex Premium Asa Delta",
 
-        categoria: "saida",
+        categoria: "biquini",
 
-        categoriaNome: "Saída de Praia",
+        categoriaNome: "Biquíni",
 
-        preco: 29.99,
+        preco: 34.99,
 
         descricao:
-            "Uma peça leve para completar seu look de verão.",
+            "Modelo moderno e confortável, perfeito para praia, piscina e dias de sol.",
+
+        detalhes: [
+            "Top triangular com detalhes em contraste",
+            "Calcinha asa delta que valoriza a silhueta",
+            "Confeccionado em Suplex Premium",
+            "Toque macio e ótimo caimento"
+        ],
 
         imagem:
-            "https://images.unsplash.com/photo-1583743814966-8936f37f4b5a?auto=format&fit=crop&w=600&q=80",
+            "imagens/01biquini suplex premium asa delta.jpeg",
+
+        imagens: [
+            "imagens/01biquini suplex premium asa delta.jpeg",
+            "imagens/02biquini suplex premium asa delta.jpeg",
+            "imagens/03biquini suplex premium asa delta.jpeg"
+        ],
 
         novo: false
+    },
+
+
+    {
+        nome: "03 Biquíni com Babado e Calcinha Asa Delta",
+
+        categoria: "biquini",
+
+        categoriaNome: "Biquíni",
+
+        preco: 34.99,
+
+        descricao:
+            "Delicado, moderno e confortável, perfeito para os dias de sol.",
+
+        detalhes: [
+            "Top com babado e detalhe franzido",
+            "Calcinha asa delta que valoriza a silhueta",
+            "Modelagem confortável e feminina",
+            "Ideal para praia, piscina e viagens"
+        ],
+
+        imagem:
+            "imagens/01- Biquíni com Babado.jpeg",
+
+        imagens: [
+            "imagens/01- Biquíni com Babado.jpeg",
+            "imagens/02 -  Biquíni com Babado.jpeg"
+        ],
+
+        novo: true
+    },
+
+
+    {
+        nome: "04 Biquíni Asa Delta com Amarração",
+
+        categoria: "biquini",
+
+        categoriaNome: "Biquíni",
+
+        preco: 34.99,
+
+        descricao:
+            "Modelo marcante, confortável e versátil, ideal para aproveitar os dias de sol com estilo.",
+
+        detalhes: [
+            "Top triangular com amarração ajustável",
+            "Calcinha asa delta com laterais reguláveis",
+            "Modelagem que valoriza a silhueta",
+            "Ideal para praia, piscina e viagens"
+        ],
+
+        imagem:
+            "imagens/01 biquini asa delta.jpeg",
+
+        imagens: [
+            "imagens/01 biquini asa delta.jpeg",
+            "imagens/02 biquini asa delta.jpeg",
+            "imagens/03 biquini asa delta.jpeg"
+        ],
+
+        novo: true
     },
 
 
@@ -72,7 +148,9 @@ const produtos = [
         imagem:
             "https://images.unsplash.com/photo-1561715276-a2d087060f1d?auto=format&fit=crop&w=600&q=80",
 
-        novo: true
+        novo: true,
+
+        disponivel: false
     },
 
 
@@ -91,7 +169,9 @@ const produtos = [
         imagem:
             "https://images.unsplash.com/photo-1562817804-7c4e4f0a5b80?auto=format&fit=crop&w=600&q=80",
 
-        novo: false
+        novo: false,
+
+        disponivel: false
     },
 
 
@@ -110,7 +190,9 @@ const produtos = [
         imagem:
             "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80",
 
-        novo: false
+        novo: false,
+
+        disponivel: false
     },
 
 
@@ -129,7 +211,9 @@ const produtos = [
         imagem:
             "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=600&q=80",
 
-        novo: true
+        novo: true,
+
+        disponivel: false
     }
 
 ];
@@ -190,15 +274,25 @@ function mostrarProdutos(lista = produtos) {
         card.className = "product";
 
 
+        const imagens = produto.imagens || [produto.imagem];
+
+        const imagemDisponivel = produto.disponivel !== false;
+
         card.innerHTML = `
 
             <div class="product-image">
 
-                <img
+                ${imagemDisponivel ? `<img
                     src="${produto.imagem}"
                     alt="${produto.nome}"
-                    loading="lazy"
-                >
+                    loading="${index < 2 ? "eager" : "lazy"}"
+                    decoding="async"
+                    onclick="abrirGaleria(${index}, 0)"
+                >` : `
+                    <div class="product-placeholder">
+                        <span>Imagem em breve</span>
+                    </div>
+                `}
 
                 ${
                     produto.novo
@@ -211,6 +305,19 @@ function mostrarProdutos(lista = produtos) {
                 }
 
             </div>
+
+            ${imagens.length > 1 ? `
+                <div class="product-thumbnails" aria-label="Outras imagens do produto">
+                    ${imagens.map((imagem, imagemIndex) => `
+                        <button
+                            class="product-thumbnail ${imagemIndex === 0 ? "active" : ""}"
+                            onclick="abrirGaleria(${index}, ${imagemIndex})"
+                            aria-label="Visualizar imagem ${imagemIndex + 1} de ${produto.nome}">
+                            <img src="${imagem}" alt="${produto.nome} - imagem ${imagemIndex + 1}" loading="lazy" decoding="async">
+                        </button>
+                    `).join("")}
+                </div>
+            ` : ""}
 
 
             <div class="product-info">
@@ -252,13 +359,17 @@ function mostrarProdutos(lista = produtos) {
                 </div>
 
 
-                <button
-                    class="buy-button"
-                    onclick="comprar(${index})">
-
-                    Adicionar ao carrinho
-
-                </button>
+                ${imagemDisponivel ? `
+                    <button
+                        class="buy-button"
+                        onclick="comprar(${index})">
+                        Adicionar ao pedido
+                    </button>
+                ` : `
+                    <button class="buy-button unavailable" disabled>
+                        Em breve
+                    </button>
+                `}
 
             </div>
 
@@ -409,7 +520,7 @@ function finalizarPedido() {
     }
 
     let mensagem =
-        "Olá! Vim pelo site da Império Moda Feminina e gostaria de fazer este pedido:\n\n";
+        "Olá! Vim pelo site da Império Moda Feminina e gostaria de solicitar uma reserva.\n\n";
 
     const itens = [...new Set(carrinho)];
 
@@ -419,12 +530,71 @@ function finalizarPedido() {
     });
 
     const total = carrinho.reduce((soma, produto) => soma + produto.preco, 0);
-    mensagem += `\nTotal: R$ ${total.toFixed(2).replace(".", ",")}`;
+    mensagem += `\nTotal dos produtos: R$ ${total.toFixed(2).replace(".", ",")}\n`;
+    mensagem += "\nGostaria de confirmar a disponibilidade, a reserva das peças e o valor do frete para envio.";
 
     window.open(
         `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(mensagem)}`,
         "_blank"
     );
+
+}
+
+
+/* ==========================================
+   GALERIA DE PRODUTO
+========================================== */
+
+let galeriaProduto = null;
+let galeriaImagemAtual = 0;
+
+
+function abrirGaleria(index, imagemIndex = 0) {
+
+    const produto = produtos[index];
+    galeriaProduto = produto.imagens || [produto.imagem];
+    galeriaImagemAtual = imagemIndex;
+
+    atualizarGaleria();
+
+    document.getElementById("galleryModal").classList.add("open");
+    document.getElementById("galleryModal").setAttribute("aria-hidden", "false");
+
+}
+
+
+function atualizarGaleria() {
+
+    const imagem = galeriaProduto[galeriaImagemAtual];
+    const imagemPrincipal = document.getElementById("galleryMainImage");
+
+    imagemPrincipal.src = imagem;
+    imagemPrincipal.alt = `Imagem ${galeriaImagemAtual + 1} do produto`;
+    document.getElementById("galleryCounter").textContent = `${galeriaImagemAtual + 1} / ${galeriaProduto.length}`;
+
+}
+
+
+function fecharGaleria() {
+
+    document.getElementById("galleryModal").classList.remove("open");
+    document.getElementById("galleryModal").setAttribute("aria-hidden", "true");
+
+}
+
+
+function imagemAnterior() {
+
+    galeriaImagemAtual = (galeriaImagemAtual - 1 + galeriaProduto.length) % galeriaProduto.length;
+    atualizarGaleria();
+
+}
+
+
+function proximaImagem() {
+
+    galeriaImagemAtual = (galeriaImagemAtual + 1) % galeriaProduto.length;
+    atualizarGaleria();
 
 }
 
