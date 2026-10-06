@@ -8,16 +8,27 @@
     <title>Império Moda Feminina | Moda praia e looks femininos</title>
 
     <meta name="description"
-        content="Confira novidades em moda feminina, biquínis, moda praia e peças selecionadas na Império Moda Feminina.">
+        content="Confira biquínis e saída de praia da Império Moda Feminina. Consulte disponibilidade e faça seu pedido pelo WhatsApp. Loja no Brás, São Paulo.">
+    <meta name="keywords" content="biquini, biquínis, moda praia, saída de praia, loja no Brás, São Paulo">
+    <meta name="robots" content="index, follow">
 
     <link rel="canonical" href="https://imperiomodasfemininas.vercel.app/">
+
     <meta property="og:title" content="Império Moda Feminina | Moda praia e looks femininos">
-    <meta property="og:description" content="Moda praia e peças femininas selecionadas para você encontrar seu próximo look favorito.">
+    <meta property="og:description"
+        content="Moda praia e peças femininas selecionadas para você encontrar seu próximo look favorito. Atendimento via WhatsApp.">
     <meta property="og:image" content="https://imperiomodasfemininas.vercel.app/imagens/saida%20de%20praia%20-%20shorthinho%20de%20renda.jpeg">
     <meta property="og:url" content="https://imperiomodasfemininas.vercel.app/">
     <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Império Moda Feminina">
+
     <meta name="twitter:card" content="summary_large_image">
-    <link rel="icon" href="imagens/logo imperio.jpg">
+    <meta name="twitter:title" content="Império Moda Feminina | Moda praia e looks femininos">
+    <meta name="twitter:description" content="Moda praia e peças femininas selecionadas. Atendimento via WhatsApp.">
+    <meta name="twitter:image" content="https://imperiomodasfemininas.vercel.app/imagens/saida%20de%20praia%20-%20shorthinho%20de%20renda.jpeg">
+
+    <link rel="icon" href="imagens/logo%20imperio.jpg">
+    <link rel="apple-touch-icon" href="imagens/logo%20imperio.jpg">
 
     <script type="application/ld+json">
     {
@@ -34,434 +45,326 @@
             "addressRegion": "SP",
             "addressCountry": "BR"
         },
-        "sameAs": ["https://www.instagram.com/imperiomodafeminina.bras/"]
+        "sameAs": ["https://www.instagram.com/imperiomodafeminina.bras/"],
+        "priceRange": "R$ 19,99 - R$ 34,99",
+        "currenciesAccepted": "BRL",
+        "paymentAccepted": "Cash, Credit Card, PIX",
+        "openingHoursSpecification": [{
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+            "opens": "09:00",
+            "closes": "18:00"
+        }]
     }
     </script>
 
-    <meta name="theme-color" content="#193b46">
+    <meta name="theme-color" content="#193b46" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#132023" media="(prefers-color-scheme: dark)">
 
-    <link rel="preload" as="image" href="imagens/saida de praia - shorthinho de renda.jpeg">
-    <link rel="preload" as="image" href="imagens/logo imperio.jpg">
+    <script>
+        (function () {
+            try {
+                var salvo = localStorage.getItem("tema");
+                var escuro = salvo
+                    ? salvo === "escuro"
+                    : window.matchMedia("(prefers-color-scheme: dark)").matches;
+                if (escuro) document.documentElement.classList.add("dark-theme");
+            } catch (erro) {}
+        })();
+    </script>
+
+    <link rel="preload" as="image" href="imagens/saida%20de%20praia%20-%20shorthinho%20de%20renda.jpeg" fetchpriority="high">
+    <link rel="preload" as="style" href="style.css">
+    <link rel="preload" as="script" href="script.js">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet" media="print" onload="this.media='all'">
 
     <link rel="stylesheet" href="style.css">
+
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+            rel="stylesheet">
+    </noscript>
 </head>
 
 <body>
 
-<header class="header">
+<a class="skip-link" href="#main-content">Ir para o conteúdo</a>
+
+<header class="header" role="banner">
     <div class="container header-content">
 
-        <a href="#" class="logo">
-            <img class="logo-image" src="imagens/logo imperio.jpg" alt="Logo Império Moda Praia">
-
-            <div>
+        <a href="#inicio" class="logo" aria-label="Império Moda Feminina — Início">
+            <img class="logo-image" src="imagens/logo%20imperio.jpg" alt="" width="42" height="42"
+                loading="eager" decoding="async">
+            <span class="logo-text">
                 <strong>Império Moda Feminina</strong>
-                <span>Moda Praia & Feminina</span>
-            </div>
+                <span>Moda Praia &amp; Feminina</span>
+            </span>
         </a>
 
-        <nav>
+        <nav class="main-nav" aria-label="Navegação principal">
             <a href="#inicio">Início</a>
             <a href="#produtos">Produtos</a>
             <a href="#categorias">Categorias</a>
             <a href="#contato">Contato</a>
         </nav>
 
-        <button class="menu-toggle" onclick="alternarMenu()" aria-label="Abrir menu" aria-expanded="false">
-            Menu
-        </button>
-
         <div class="header-actions">
-            <a class="header-whatsapp" href="https://wa.me/5511975928045" target="_blank" rel="noopener noreferrer" aria-label="Falar pelo WhatsApp">
-                WhatsApp
+            <a class="action-button header-whatsapp" href="https://wa.me/5511975928045" target="_blank"
+                rel="noopener noreferrer" aria-label="Falar pelo WhatsApp">
+                <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                </svg>
+                <span class="label">WhatsApp</span>
             </a>
 
-            <button class="theme-toggle" onclick="alternarTema()" aria-label="Alternar tema" title="Alternar tema">
-                <span id="themeIcon">Tema</span>
+            <button class="action-button theme-toggle" id="themeToggle" type="button"
+                aria-label="Alternar tema" aria-pressed="false">
+                <svg class="icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+                <svg class="icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="4"/>
+                    <path d="M12 2v2"/>
+                    <path d="M12 20v2"/>
+                    <path d="m4.93 4.93 1.41 1.41"/>
+                    <path d="m17.66 17.66 1.41 1.41"/>
+                    <path d="M2 12h2"/>
+                    <path d="M20 12h2"/>
+                    <path d="m6.34 17.66-1.41 1.41"/>
+                    <path d="m19.07 4.93-1.41 1.41"/>
+                </svg>
             </button>
 
-            <button class="search-button" onclick="focarBusca()" aria-label="Buscar produtos" title="Buscar produtos">
-                Buscar
+            <button class="action-button search-button" id="searchButton" type="button"
+                aria-label="Buscar produtos">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="11" cy="11" r="8"/>
+                    <path d="m21 21-4.3-4.3"/>
+                </svg>
             </button>
 
-            <button class="header-cart-button" onclick="abrirCarrinho()" aria-label="Abrir carrinho">
-                Sacola <span id="headerCartCount">0</span>
+            <button class="action-button cart-button" id="cartButton" type="button"
+                aria-label="Abrir sacola" aria-expanded="false">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/>
+                    <path d="M3 6h18"/>
+                    <path d="M16 10a4 4 0 0 1-8 0"/>
+                </svg>
+                <span class="cart-count" id="headerCartCount" aria-live="polite">0</span>
+            </button>
+
+            <button class="action-button menu-toggle" id="menuToggle" type="button"
+                aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileNav">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M4 6h16"/>
+                    <path d="M4 12h16"/>
+                    <path d="M4 18h16"/>
+                </svg>
             </button>
         </div>
 
     </div>
+
+    <nav class="mobile-nav" id="mobileNav" aria-label="Navegação mobile">
+        <a href="#inicio">Início</a>
+        <a href="#produtos">Produtos</a>
+        <a href="#categorias">Categorias</a>
+        <a href="#contato">Contato</a>
+    </nav>
 </header>
 
-<nav class="mobile-nav" id="mobileNav" aria-label="Navegação mobile">
-    <a href="#inicio" onclick="fecharMenu()">Início</a>
-    <a href="#produtos" onclick="fecharMenu()">Produtos</a>
-    <a href="#categorias" onclick="fecharMenu()">Categorias</a>
-    <a href="#contato" onclick="fecharMenu()">Contato</a>
-</nav>
+<main id="main-content">
 
+    <section class="hero" id="inicio" aria-labelledby="hero-title">
+        <div class="container hero-content">
 
-<section class="hero" id="inicio">
+            <div class="hero-text">
+                <span class="eyebrow">Império Moda Feminina</span>
 
-    <div class="container hero-content">
+                <h1 id="hero-title">
+                    Moda feminina para você
+                    <span>se sentir ainda mais incrível.</span>
+                </h1>
 
-        <div class="hero-text">
+                <p>Encontre looks, moda praia e peças que combinam com o seu estilo.</p>
 
-            <span class="eyebrow">
-                IMPÉRIO MODA FEMININA
-            </span>
+                <div class="hero-actions">
+                    <a href="#produtos" class="main-button">Ver produtos</a>
+                    <a href="https://wa.me/5511975928045" target="_blank" rel="noopener noreferrer"
+                        class="secondary-button">Falar no WhatsApp</a>
+                </div>
 
-            <h1>
-                Moda feminina para você
-                <span>se sentir ainda mais incrível.</span>
-            </h1>
+                <div class="hero-trust" aria-label="Diferenciais da loja">
+                    <span>Entrega rápida</span>
+                    <span>Atendimento WhatsApp</span>
+                    <span>Peças selecionadas</span>
+                    <span>Loja no Brás — SP</span>
+                </div>
+            </div>
 
-            <p>
-                Encontre looks, moda praia e peças que combinam com o seu estilo.
-            </p>
-
-            <a href="#produtos" class="main-button">
-                Ver produtos
-            </a>
-
-            <a href="https://wa.me/5511975928045" target="_blank" rel="noopener noreferrer" class="secondary-button">
-                Falar no WhatsApp
-            </a>
-
-        </div>
-
-        <div class="hero-photo"></div>
-
-    </div>
-
-</section>
-
-<section class="highlight-strip" aria-label="Destaques da loja">
-    <div class="container highlight-grid">
-        <span><b>Novidades</b> toda semana</span>
-        <span><b>Atendimento</b> pelo WhatsApp</span>
-        <span><b>Produtos</b> selecionados</span>
-        <span><b>Loja</b> no Brás</span>
-    </div>
-</section>
-
-
-<section class="categories content-section" id="categorias">
-
-    <div class="container">
-
-        <div class="section-title">
-
-            <span>ENCONTRE SEU ESTILO</span>
-
-            <h2>
-                Escolha uma categoria
-            </h2>
-
-            <p>
-                Encontre sua peça favorita de forma rápida.
-            </p>
+            <div class="hero-photo">
+                <img src="imagens/saida%20de%20praia%20-%20shorthinho%20de%20renda.jpeg"
+                    alt="Saída de praia shortinho de renda — coleção verão"
+                    width="600" height="750" fetchpriority="high" decoding="async">
+            </div>
 
         </div>
+    </section>
 
-        <div class="category-buttons">
+    <section class="categories content-section" id="categorias" aria-labelledby="categorias-title">
+        <div class="container">
 
-            <button
-                class="category-btn active"
-                onclick="filtrarCategoria('todos', this)">
-                Todos
-            </button>
+            <div class="section-title">
+                <span class="eyebrow">Encontre seu estilo</span>
+                <h2 id="categorias-title">Escolha uma categoria</h2>
+                <p>Encontre sua peça favorita de forma rápida.</p>
+            </div>
 
-            <button
-                class="category-btn"
-                onclick="filtrarCategoria('saida', this)">
-                Saídas de Praia
-            </button>
-
-            <button
-                class="category-btn"
-                onclick="filtrarCategoria('biquini', this)">
-                Biquínis
-            </button>
-
-            <button
-                class="category-btn"
-                onclick="filtrarCategoria('maio', this)">
-                Maiôs
-            </button>
-
-            <button
-                class="category-btn"
-                onclick="filtrarCategoria('feminino', this)">
-                Moda Feminina
-            </button>
-
-            <button class="category-btn" onclick="filtrarCategoria('novidades', this)">
-                Novidades
-            </button>
-
-            <button class="category-btn" onclick="filtrarCategoria('destaques', this)">
-                Destaques
-            </button>
+            <div class="category-buttons" role="group" aria-label="Filtrar produtos por categoria">
+                <button class="category-btn active" type="button" data-categoria="todos" aria-pressed="true">Todos</button>
+                <button class="category-btn" type="button" data-categoria="saida" aria-pressed="false">Saídas de Praia</button>
+                <button class="category-btn" type="button" data-categoria="biquini" aria-pressed="false">Biquínis</button>
+                <button class="category-btn" type="button" data-categoria="novidades" aria-pressed="false">Novidades</button>
+                <button class="category-btn" type="button" data-categoria="destaques" aria-pressed="false">Destaques</button>
+            </div>
 
         </div>
+    </section>
 
-    </div>
+    <section class="products-section content-section" id="produtos" aria-labelledby="produtos-title">
+        <div class="container">
 
-</section>
+            <div class="products-top">
+                <div>
+                    <span class="eyebrow">Nossa coleção</span>
+                    <h2 id="produtos-title">Peças em destaque</h2>
+                    <p class="products-count" id="resultadoResumo" aria-live="polite"></p>
+                </div>
 
+                <div class="search-box">
+                    <label class="visually-hidden" for="busca">Buscar produto</label>
+                    <input type="search" id="busca" placeholder="Buscar produto..."
+                        autocomplete="off" aria-describedby="busca-hint">
+                    <span id="busca-hint" class="visually-hidden">Digite para filtrar produtos por nome, categoria ou descrição</span>
+                </div>
+            </div>
 
-<section class="products-section content-section" id="produtos">
+            <div class="empty-results" id="emptyResults" hidden>
+                <h3>Não encontramos esse produto ainda.</h3>
+                <p>Fale com a gente pelo WhatsApp e podemos verificar outras opções.</p>
+                <a href="https://wa.me/5511975928045" target="_blank" rel="noopener noreferrer"
+                    class="secondary-button">Falar no WhatsApp</a>
+            </div>
 
-    <div class="container">
+            <div class="products-grid" id="listaProdutos" role="list" aria-label="Lista de produtos"></div>
 
-        <div class="products-top">
+        </div>
+    </section>
 
+    <section class="instagram content-section" aria-labelledby="instagram-title">
+        <div class="container">
+            <span class="eyebrow">Acompanhe a Império</span>
+            <h2 id="instagram-title">Siga a Império no Instagram</h2>
+            <p>Veja novidades, lançamentos e inspirações todos os dias.</p>
+            <a class="main-button" href="https://www.instagram.com/imperiomodafeminina.bras/"
+                target="_blank" rel="noopener noreferrer">@imperiomodafeminina.bras</a>
+        </div>
+    </section>
+
+    <section class="location-section content-section" id="localizacao" aria-labelledby="localizacao-title">
+        <div class="container location-content">
             <div>
-
-                <span class="eyebrow" id="resultadoResumo">NOSSA COLEÇÃO</span>
-
-                <h2>
-                    Peças em destaque
-                </h2>
-
+                <span class="eyebrow">Venha nos visitar</span>
+                <h2 id="localizacao-title">Encontre a Império</h2>
+                <p>Rua Largo da Concórdia, 131<br>Brás — São Paulo/SP</p>
             </div>
-
-            <div class="search-box">
-
-                <input
-                    type="text"
-                    id="busca"
-                    placeholder="Buscar produto..."
-                    oninput="buscarProduto()">
-
-            </div>
-
+            <a class="main-button"
+                href="https://www.google.com/maps/search/?api=1&amp;query=Rua+Largo+da+Concordia+131+Bras+Sao+Paulo"
+                target="_blank" rel="noopener noreferrer">Como chegar</a>
         </div>
+    </section>
 
-        <div class="empty-results" id="emptyResults" hidden>
-            <h3>Não encontramos esse produto ainda.</h3>
-            <p>Fale com a gente pelo WhatsApp e podemos verificar outras opções.</p>
-            <a href="https://wa.me/5511975928045" target="_blank" rel="noopener noreferrer" class="secondary-button">Falar no WhatsApp</a>
-        </div>
+</main>
 
-
-        <div
-            class="products-grid"
-            id="listaProdutos">
-        </div>
-
-    </div>
-
-</section>
-
-<section class="editorial-section content-section" id="novidades">
-    <div class="container">
-        <div class="section-heading-row">
-            <div>
-                <span class="eyebrow">SELEÇÃO DA SEMANA</span>
-                <h2>Novidades</h2>
-                <p>Peças novas para atualizar seus dias de sol.</p>
-            </div>
-            <button class="text-button" onclick="filtrarCategoria('novidades', document.querySelector('[onclick*=\'novidades\']'))">Ver todas as peças</button>
-        </div>
-        <div class="mini-products" id="novidadesGrid"></div>
-    </div>
-</section>
-
-<section class="editorial-section choices-section content-section">
-    <div class="container">
-        <div class="section-title">
-            <span>CURADORIA IMPÉRIO</span>
-            <h2>Escolhas da Império</h2>
-            <p>Peças selecionadas para você encontrar seu próximo look favorito.</p>
-        </div>
-        <div class="mini-products" id="choicesGrid"></div>
-    </div>
-</section>
-
-<section class="universe-section content-section">
-    <div class="container">
-        <div class="section-title">
-            <span>INSPIRAÇÃO</span>
-            <h2>Universo Império</h2>
-            <p>Ideias para vestir seus dias com mais personalidade.</p>
-        </div>
-        <div class="universe-grid">
-            <article><span>Beleza</span><h3>3 ideias de looks para aproveitar o verão</h3><p>Combinações leves para sair da praia direto para o passeio.</p></article>
-            <article><span>Moda</span><h3>Como escolher o biquíni ideal para seu estilo</h3><p>Detalhes que ajudam você a se sentir confortável e segura.</p></article>
-            <article><span>Tendências</span><h3>O que está aparecendo nas vitrines</h3><p>Cores, texturas e modelagens para inspirar sua próxima escolha.</p></article>
-        </div>
-    </div>
-</section>
-
-
-<section class="benefits content-section">
-
-    <div class="container benefits-grid">
-
-        <div class="benefit">
-            <h3>
-                Peças selecionadas
-            </h3>
-
-            <p>
-                Produtos escolhidos para você.
-            </p>
-        </div>
-
-
-        <div class="benefit">
-            <h3>
-                Atendimento fácil
-            </h3>
-
-            <p>
-                Tire suas dúvidas pelo WhatsApp.
-            </p>
-        </div>
-
-
-        <div class="benefit">
-            <h3>
-                Compra simples
-            </h3>
-
-            <p>
-                Escolha sua peça e fale conosco.
-            </p>
-        </div>
-
-    </div>
-
-</section>
-
-
-<section class="instagram content-section">
-
-    <div class="container">
-
-        <span class="eyebrow">
-            ACOMPANHE A IMPÉRIO
-        </span>
-
-        <h2>Siga a Império no Instagram</h2>
-
-        <p>
-            Veja novidades, lançamentos e inspirações todos os dias.
-        </p>
-
-        <a
-            href="https://www.instagram.com/imperiomodafeminina.bras/"
-            target="_blank"
-            class="instagram-button">
-
-            @imperiomodafeminina.bras
-
-        </a>
-
-    </div>
-
-</section>
-
-<section class="location-section content-section" id="localizacao">
-    <div class="container location-content">
-        <div>
-            <span class="eyebrow">VENHA NOS VISITAR</span>
-            <h2>Encontre a Império</h2>
-            <p>Rua Largo da Concórdia, 131<br>Brás — São Paulo/SP</p>
-        </div>
-        <a class="main-button" target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/search/?api=1&query=Rua+Largo+da+Concordia+131+Bras+Sao+Paulo">Como chegar</a>
-    </div>
-</section>
-
-
-<footer id="contato">
-
+<footer class="footer" id="contato" role="contentinfo">
     <div class="container footer-grid">
 
         <div>
-
-            <h3>
-                Império Moda Feminina
-            </h3>
-
+            <h3>Império Moda Feminina</h3>
             <p>Moda feminina, estilo e novidades para você.</p>
-
         </div>
 
-
         <div>
-
-            <h3>
-                Onde estamos
-            </h3>
-
-            <p>Rua Largo da Concórdia, 131</p>
-            <p>Brás — São Paulo/SP</p>
-            <p><a href="https://www.google.com/maps/search/?api=1&query=Rua+Largo+da+Concordia+131+Bras+Sao+Paulo" target="_blank" rel="noopener noreferrer">Como chegar</a></p>
-
+            <h3>Onde estamos</h3>
+            <address>
+                <p>Rua Largo da Concórdia, 131</p>
+                <p>Brás — São Paulo/SP</p>
+                <p>
+                    <a href="https://www.google.com/maps/search/?api=1&amp;query=Rua+Largo+da+Concordia+131+Bras+Sao+Paulo"
+                        target="_blank" rel="noopener noreferrer">Como chegar</a>
+                </p>
+            </address>
         </div>
 
-
         <div>
-
-            <h3>
-                Fale conosco
-            </h3>
-
+            <h3>Fale conosco</h3>
             <p>
-                <a href="https://wa.me/5511975928045" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+                <a href="https://wa.me/5511975928045" target="_blank" rel="noopener noreferrer">WhatsApp: (11) 97592-8045</a>
             </p>
-
             <p>
-                <a href="https://www.instagram.com/imperiomodafeminina.bras/" target="_blank" rel="noopener noreferrer">Instagram</a>
+                <a href="https://www.instagram.com/imperiomodafeminina.bras/" target="_blank" rel="noopener noreferrer">@imperiomodafeminina.bras</a>
             </p>
-
         </div>
 
     </div>
 
-
-    <div class="copyright">
-
-        © 2026 Império Moda Feminina. Todos os direitos reservados.
-
+    <div class="container copyright">
+        <p>© 2026 Império Moda Feminina. Todos os direitos reservados.</p>
     </div>
-
 </footer>
 
-
-<button
-    class="whatsapp-float"
-    onclick="abrirCarrinho()"
-    aria-label="Abrir carrinho">
-
-    Carrinho
-
-    <span id="cartCount">
-        0
-    </span>
-
+<button class="back-to-top" id="backToTop" type="button" aria-label="Voltar ao topo">
+    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="m5 12 7-7 7 7"/>
+        <path d="M12 19V5"/>
+    </svg>
+    Topo
 </button>
 
-<a class="whatsapp-contact" href="https://wa.me/5511975928045" target="_blank" rel="noopener noreferrer" aria-label="Fale conosco pelo WhatsApp">
+<a class="whatsapp-contact" href="https://wa.me/5511975928045" target="_blank" rel="noopener noreferrer"
+    aria-label="Fale conosco pelo WhatsApp">
+    <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
     Fale conosco
 </a>
 
-
-<aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
+<aside class="cart-drawer" id="cartDrawer" role="dialog" aria-modal="true"
+    aria-label="Sacola de pedidos" aria-hidden="true">
 
     <div class="cart-header">
         <div>
-            <span class="eyebrow">SEU PEDIDO</span>
+            <span class="eyebrow">Seu pedido</span>
             <h2>Pedido de reserva</h2>
         </div>
-
-        <button class="cart-close" onclick="fecharCarrinho()" aria-label="Fechar carrinho">×</button>
+        <button class="cart-close" id="cartClose" type="button" aria-label="Fechar sacola">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M18 6 6 18"/>
+                <path d="m6 6 12 12"/>
+            </svg>
+        </button>
     </div>
 
     <div class="cart-items" id="cartItems"></div>
@@ -476,41 +379,61 @@
             <strong id="cartTotal">R$ 0,00</strong>
         </div>
 
-        <button class="checkout-button" onclick="finalizarPedido()">
+        <button class="checkout-button" id="checkoutButton" type="button">
             Enviar pedido ao atendimento
         </button>
     </div>
 
 </aside>
 
-<div class="cart-overlay" id="cartOverlay" onclick="fecharCarrinho()"></div>
+<div class="cart-overlay" id="cartOverlay"></div>
 
-<button class="back-to-top" id="backToTop" onclick="voltarAoTopo()" aria-label="Voltar ao topo">Topo</button>
-
-
-<div class="gallery-modal" id="galleryModal" aria-hidden="true">
-
-    <div class="gallery-dialog" role="dialog" aria-modal="true" aria-label="Galeria de imagens do produto">
-
-        <button class="gallery-close" onclick="fecharGaleria()" aria-label="Fechar galeria">Fechar</button>
+<div class="modal gallery-modal" id="galleryModal" aria-hidden="true">
+    <div class="modal-dialog gallery-dialog" role="dialog" aria-modal="true" aria-label="Galeria de imagens do produto">
+        <button class="modal-close" id="galleryClose" type="button" aria-label="Fechar galeria">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M18 6 6 18"/>
+                <path d="m6 6 12 12"/>
+            </svg>
+        </button>
 
         <img class="gallery-main-image" id="galleryMainImage" src="" alt="">
 
         <div class="gallery-controls">
-            <button onclick="imagemAnterior()" aria-label="Imagem anterior">Anterior</button>
-            <span id="galleryCounter">1 / 1</span>
-            <button onclick="proximaImagem()" aria-label="Próxima imagem">Próxima</button>
+            <button class="gallery-nav" id="galleryPrev" type="button" aria-label="Imagem anterior">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="m15 18-6-6 6-6"/>
+                </svg>
+            </button>
+            <span class="gallery-counter" id="galleryCounter">1 / 1</span>
+            <button class="gallery-nav" id="galleryNext" type="button" aria-label="Próxima imagem">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="m9 18 6-6-6-6"/>
+                </svg>
+            </button>
         </div>
-
     </div>
-
 </div>
 
-<div class="product-modal" id="productModal" aria-hidden="true">
-    <div class="product-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="productModalTitle">
-        <button class="gallery-close" onclick="fecharDetalhes()" aria-label="Fechar detalhes">Fechar</button>
+<div class="modal product-modal" id="productModal" aria-hidden="true">
+    <div class="modal-dialog product-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="productModalTitle">
+        <button class="modal-close" id="productClose" type="button" aria-label="Fechar detalhes">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M18 6 6 18"/>
+                <path d="m6 6 12 12"/>
+            </svg>
+        </button>
+
         <div class="product-modal-layout">
-            <img id="productModalImage" src="" alt="">
+            <div class="product-modal-media">
+                <img id="productModalImage" src="" alt="">
+                <div class="product-thumbs" id="productModalThumbs"></div>
+            </div>
+
             <div class="product-modal-copy">
                 <span class="product-category" id="productModalCategory"></span>
                 <h2 id="productModalTitle"></h2>
@@ -518,14 +441,13 @@
                 <ul class="product-details" id="productModalDetails"></ul>
                 <strong class="modal-price" id="productModalPrice"></strong>
                 <div class="modal-actions">
-                    <button class="buy-button" id="productModalCart">Adicionar à sacola</button>
-                    <button class="secondary-button" id="productModalWhatsApp">Comprar pelo WhatsApp</button>
+                    <button class="buy-button" id="productModalCart" type="button">Adicionar à sacola</button>
+                    <button class="secondary-button" id="productModalWhatsApp" type="button">Comprar pelo WhatsApp</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 
 <script src="script.js"></script>
 
