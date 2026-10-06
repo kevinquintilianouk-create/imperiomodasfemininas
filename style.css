@@ -610,7 +610,7 @@ html.dark-theme .theme-toggle .icon-moon {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
-    align-items: start;
+    align-items: stretch;
 }
 
 .empty-results {
@@ -652,12 +652,14 @@ html.dark-theme .theme-toggle .icon-moon {
 
 .product-image {
     position: relative;
+    aspect-ratio: 4 / 5;
+    background: var(--sand);
     overflow: hidden;
 }
 
 .product-image img {
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: contain;
     cursor: zoom-in;
 }
