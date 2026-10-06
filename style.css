@@ -516,17 +516,20 @@ html.dark-theme .theme-toggle .icon-moon {
 .hero-photo {
     position: relative;
     isolation: isolate;
+    width: fit-content;
+    max-width: 100%;
+    max-height: 75vh;
     border-radius: var(--radius-lg);
     overflow: hidden;
-    aspect-ratio: 4 / 5;
-    background: var(--sand);
     box-shadow: 18px 18px 0 rgba(185, 142, 61, 0.16), var(--shadow-lg);
     animation: reveal-photo 0.9s ease 0.08s both;
 }
 
 .hero-photo img {
-    width: 100%;
-    height: 100%;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 75vh;
     object-fit: contain;
 }
 
@@ -607,7 +610,7 @@ html.dark-theme .theme-toggle .icon-moon {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
-    align-items: stretch;
+    align-items: start;
 }
 
 .empty-results {
@@ -649,14 +652,12 @@ html.dark-theme .theme-toggle .icon-moon {
 
 .product-image {
     position: relative;
-    aspect-ratio: 4 / 5;
-    background: var(--sand);
     overflow: hidden;
 }
 
 .product-image img {
     width: 100%;
-    height: 100%;
+    height: auto;
     object-fit: contain;
     cursor: zoom-in;
 }
@@ -1367,7 +1368,7 @@ html.dark-theme .theme-toggle .icon-moon {
     }
 
     .hero-photo {
-        max-width: 560px;
+        max-width: 100%;
     }
 
     .products-grid {
@@ -1429,7 +1430,11 @@ html.dark-theme .theme-toggle .icon-moon {
     }
 
     .hero-photo {
-        aspect-ratio: 4 / 4.4;
+        max-height: 70vh;
+    }
+
+    .hero-photo img {
+        max-height: 70vh;
     }
 
     .category-buttons {
